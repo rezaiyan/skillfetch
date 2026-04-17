@@ -33,8 +33,7 @@ This plugin gives you a simple and structured way to manage them:
 ### option 1: Claude Code plugin (recommended)
 
 ```bash
-claude plugin marketplace add rezaiyan
-claude-plugins && claude plugin install skillfetch
+claude plugin marketplace add rezaiyan/claude-plugins && claude plugin install skillfetch
 ````
 
 The plugin is ready to use immediately. No restart needed.
