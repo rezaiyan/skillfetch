@@ -27,17 +27,17 @@ echo "  Project target: $INSTALL_DIR"
 echo ""
 
 # Create install layout
-mkdir -p "$INSTALL_DIR/commands"
+mkdir -p "$INSTALL_DIR/references"
 mkdir -p "$INSTALL_DIR/evals"
 mkdir -p "$INSTALL_DIR/synced"
 
 # Symlink instruction files — managed by plugin, not project
-ln -sf "$PLUGIN_DIR/SKILL.md"                    "$INSTALL_DIR/SKILL.md"
-ln -sf "$PLUGIN_DIR/security.md"                 "$INSTALL_DIR/security.md"
-ln -sf "$PLUGIN_DIR/commands/sync.md"            "$INSTALL_DIR/commands/sync.md"
-ln -sf "$PLUGIN_DIR/commands/manage.md"          "$INSTALL_DIR/commands/manage.md"
-ln -sf "$PLUGIN_DIR/commands/directories.md"     "$INSTALL_DIR/commands/directories.md"
-ln -sf "$PLUGIN_DIR/evals/README.md"             "$INSTALL_DIR/evals/README.md"
+ln -sf "$PLUGIN_DIR/skills/skillfetch/SKILL.md"                        "$INSTALL_DIR/SKILL.md"
+ln -sf "$PLUGIN_DIR/skills/skillfetch/security.md"                     "$INSTALL_DIR/security.md"
+ln -sf "$PLUGIN_DIR/skills/skillfetch/references/sync.md"              "$INSTALL_DIR/references/sync.md"
+ln -sf "$PLUGIN_DIR/skills/skillfetch/references/manage.md"            "$INSTALL_DIR/references/manage.md"
+ln -sf "$PLUGIN_DIR/skills/skillfetch/references/directories.md"       "$INSTALL_DIR/references/directories.md"
+ln -sf "$PLUGIN_DIR/skills/skillfetch/evals/README.md"                 "$INSTALL_DIR/evals/README.md"
 
 # Create project-local registry from template (only if one doesn't exist yet)
 if [[ ! -f "$INSTALL_DIR/registry.json" ]]; then
@@ -66,5 +66,5 @@ echo "     Symlinks pointing to $PLUGIN_DIR are machine-local — do not commit 
 echo "     Add to your project .gitignore:"
 echo "       .claude/skills/skillfetch/SKILL.md"
 echo "       .claude/skills/skillfetch/security.md"
-echo "       .claude/skills/skillfetch/commands/"
+echo "       .claude/skills/skillfetch/references/"
 echo "       .claude/skills/skillfetch/evals/"

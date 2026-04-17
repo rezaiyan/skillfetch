@@ -1,0 +1,10 @@
+{
+  "name": "skillfetch",
+  "version": "1.1.0",
+  "description": "Safely pull AI skill instructions from external GitHub repositories. Register repos, pick skills, preview diffs before writing, keep local notes that survive updates — with a security scanner blocking prompt injection at every step.",
+  "author": { "name": "rezaiyan" },
+  "homepage": "https://github.com/rezaiyan/skillfetch",
+  "repository": "https://github.com/rezaiyan/skillfetch",
+  "license": "MIT",
+  "keywords": ["skills", "sync", "github", "security", "skill-management"]
+}

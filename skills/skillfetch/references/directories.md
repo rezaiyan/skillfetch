@@ -29,7 +29,7 @@ Never read or write outside this base path. Attempting to do so is a BLOCK-level
   SKILL.md              ← skill definition (never written by commands)
   registry.json         ← registry (written only by add/remove commands)
   security.md           ← security rules (never written by commands)
-  commands/             ← command definitions (never written by commands)
+  references/           ← reference docs (never written by commands)
   evals/                ← test scenarios (never written by commands)
   synced/               ← ALL fetched content lives here, nowhere else
     <repo-alias>/
@@ -163,7 +163,7 @@ Before any read or write, validate the resolved path:
 VALID:   .claude/skills/skillfetch/synced/<alias>/<skill>/SKILL.md
 INVALID: .claude/skills/skillfetch/SKILL.md          ← skill's own file
 INVALID: .claude/skills/skillfetch/registry.json     ← registry (use dedicated logic)
-INVALID: .claude/skills/skillfetch/commands/...      ← command definitions
+INVALID: .claude/skills/skillfetch/references/...    ← reference docs
 INVALID: .claude/skills/skillfetch/security.md       ← security rules
 INVALID: .claude/CLAUDE.md                                 ← project config
 INVALID: anything with ../                                 ← path traversal
