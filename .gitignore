@@ -1,0 +1,15 @@
+# Project-local data — never committed to the plugin repo
+# These are created per-project by install.sh
+registry.json
+synced/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# macOS
+.DS_Store
+
+# Local test registries
+registry.local.json
