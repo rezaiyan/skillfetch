@@ -23,24 +23,18 @@ This plugin gives you a structured workflow to manage them:
 ## Demo
 
 <div align="center">
-  <video src="assets/demo.mp4" controls width="100%" style="max-width:860px;border-radius:10px;border:1px solid #30363d;box-shadow:0 4px 24px rgba(0,0,0,0.3)">
-    <a href="assets/demo.mp4">Watch the demo</a>
-  </video>
-  <p><em>Fetching a repo, browsing available skills, and adding them — all from Claude Code</em></p>
+  <img src="assets/demo.gif" alt="skillfetch demo — fetching a repo, browsing skills, and adding them from Claude Code">
 </div>
 
 ---
 
 ## Install
 
-### Option 1 — Claude Code Marketplace (recommended)
-
-Open Claude Code → **Settings → Marketplace**, search for **skillfetch**, and click **Install**.
-
-Or install directly from the command palette:
+### Option 1 — Claude Code Plugin (recommended)
 
 ```
-/marketplace install skillfetch
+claude plugin marketplace add rezaiyan
+claude-plugins && claude plugin install skillfetch
 ```
 
 The plugin is immediately active in your current session. No restart needed.
