@@ -1,139 +1,126 @@
-# skillfetch
+# 📦 skillfetch 📦
 
-A Claude Code plugin for safely pulling AI skill instructions from external GitHub repositories.
+A Claude Code plugin that helps you safely pull AI skill instructions from external GitHub repositories.
 
-Register repos, pick which skills to sync, preview diffs before writing, keep project-specific notes that survive updates — with a security scanner blocking prompt injection at every step.
-
----
-
-## What It Does
-
-Claude Code works best with domain-specific context loaded as skills. Projects like [android/skills](https://github.com/android/skills) and [everything-claude-code](https://github.com/affaan-m/everything-claude-code) publish maintained `SKILL.md` files that teach the assistant how to handle specific tasks — across any tech stack or domain.
-
-This plugin gives you a structured workflow to manage them:
-
-- **Add** a repo → see a numbered menu of available skills → pick what you want
-- **Sync** registered skills → see a diff → decide before writing
-- **Keep local notes** in synced files that survive future syncs
-- **Security scanner** blocks prompt injection, credential harvesting, and self-modification before anything hits disk
-- **Works with any repo** — structured manifests, standard READMEs, or raw file trees
+You can register repos, choose which skills to sync, preview changes before writing, and keep your own notes that stay even after updates. A built-in security scanner checks everything and blocks risky content before it reaches your project.
 
 ---
 
-## Demo
+<details open>
+<summary>
+  <h2>Demo</h2>
+</summary>
+<img src="assets/demo.gif" alt="skillfetch demo fetching a repo, browsing skills, and adding them from Claude Code">
+</details>
 
-<div align="center">
-  <img src="assets/demo.gif" alt="skillfetch demo — fetching a repo, browsing skills, and adding them from Claude Code">
-</div>
+## what it does
+
+Claude Code works best when it has domain-specific context loaded as skills. Projects like [android/skills](https://github.com/android/skills) and [everything-claude-code](https://github.com/affaan-m/everything-claude-code) provide maintained `SKILL.md` files that teach the assistant how to handle different tasks across many tech stacks.
+
+This plugin gives you a simple and structured way to manage them:
+
+- add a repo and see a numbered list of available skills  
+- choose what you want to sync  
+- review diffs before anything is written  
+- keep local notes inside synced files without losing them  
+- block prompt injection, credential leaks, and unsafe instructions  
+- works with any repo, even if it is not structured  
 
 ---
 
-## Install
+## install
 
-### Option 1 — Claude Code Plugin (recommended)
-
-```
-claude plugin marketplace add rezaiyan
-claude-plugins && claude plugin install skillfetch
-```
-
-The plugin is immediately active in your current session. No restart needed.
-
----
-
-### Option 2 — Manual (git clone)
+### option 1: Claude Code plugin (recommended)
 
 ```bash
-# 1. Clone the plugin (choose any location)
+claude plugin marketplace add rezaiyan
+claude-plugins && claude plugin install skillfetch
+````
+
+The plugin is ready to use immediately. No restart needed.
+
+---
+
+### option 2: manual install (git clone)
+
+```bash
+# 1. clone the plugin
 git clone https://github.com/rezaiyan/skillfetch ~/tools/skillfetch
 
-# 2. Run the install script (from inside your project directory)
+# 2. run the install script from your project
 cd /path/to/your/project
 ~/tools/skillfetch/install.sh
 ```
 
-The script:
-- Symlinks instruction files from the plugin into `.claude/skills/skillfetch/`
-- Creates a fresh `registry.json` from the template
-- Creates the `synced/` directory
+The script will:
 
-**No CLAUDE.md changes needed** — Claude Code auto-loads skills from `.claude/skills/`.
+* create symlinks into `.claude/skills/skillfetch/`
+* generate a fresh `registry.json`
+* create the `synced/` directory
 
-### Updating
-
-**Marketplace:** Updates automatically, or tap **Update** in Settings → Marketplace.
-
-**Manual:**
-```bash
-cd ~/tools/skillfetch
-git pull
-# Re-run install to refresh symlinks (safe to run multiple times)
-~/tools/skillfetch/install.sh /path/to/your/project
-```
-
-### What to commit to your project
-
-The symlinks are machine-local (they point to your local plugin clone) — don't commit them.
-Commit only the project data:
-
-```
-# Add to your project's .gitignore:
-.claude/skills/skillfetch/SKILL.md
-.claude/skills/skillfetch/security.md
-.claude/skills/skillfetch/commands/
-.claude/skills/skillfetch/evals/
-```
-
-Keep and commit:
-- `.claude/skills/skillfetch/registry.json` — your registered repos and skills
-- `.claude/skills/skillfetch/synced/` — the synced skill files (optional but recommended)
+No need to change CLAUDE.md. Claude Code loads skills automatically.
 
 ---
 
-## Usage
+### updating
 
-All commands run via `/skillfetch <command>` in Claude Code.
+**marketplace:** updates automatically or via settings
 
+**manual:**
+
+```bash
+cd ~/tools/skillfetch
+git pull
+~/tools/skillfetch/install.sh /path/to/your/project
 ```
+
+---
+
+## usage
+
+Run commands like this:
+
+```bash
 /skillfetch help
 /skillfetch list
 /skillfetch add-repo https://github.com/android/skills
- /skillfetch add-repo https://github.com/affaan-m/everything-claude-code
 /skillfetch sync android-skills
-/skillfetch sync android-skills edge-to-edge
-/skillfetch sync everything-claude-code skill-authoring
 /skillfetch sync all
-/skillfetch add-skill android-skills
-/skillfetch remove-skill android-skills edge-to-edge
-/skillfetch remove-repo android-skills
 ```
 
-### First-time setup
+---
 
-```
+### first setup
+
+```bash
 /skillfetch add-repo https://github.com/android/skills
-# → shows numbered menu of available skills
-# → enter "1 3 5" to pick, or "all"
-# → selected skills are security-scanned and written to synced/
-
-/skillfetch add-repo https://github.com/affaan-m/everything-claude-code
-# → same flow for Claude Code workflow skills
 ```
 
-### Keeping skills up to date
+You will see a list of skills. Choose some or type "all".
 
-```
+Then repeat for other repos if needed.
+
+---
+
+### keep skills updated
+
+```bash
 /skillfetch sync android-skills
-# → fetches each registered skill
-# → shows diff for any that changed
-# → asks before writing
 ```
 
-### Checking what's registered
+You will see changes before they are applied.
 
-```
+---
+
+### check current setup
+
+```bash
 /skillfetch list
+```
 
+Example:
+
+```text
 REPO                    SKILL                     LAST SYNCED     STATUS
 android-skills          edge-to-edge              2026-04-17      ok
 everything-claude-code  skill-authoring           2026-04-17      ok
@@ -141,82 +128,91 @@ everything-claude-code  skill-authoring           2026-04-17      ok
 
 ---
 
-## Local Annotations
+## local notes
 
-Add project-specific notes to any synced file without losing them on the next sync:
+You can add your own notes inside synced files:
 
-```markdown
+```md
 <!-- LOCAL ADDITIONS START -->
-## Project Notes
-We enforce stricter lint rules — always run with `--max-warnings 0`.
+## project notes
+we use strict lint rules, always run with --max-warnings 0
 <!-- LOCAL ADDITIONS END -->
 ```
 
-On the next sync, you get the choice:
-```
-[O] Override  — replace entirely with remote version (additions lost)
-[M] Merge     — apply remote update, keep your additions at the bottom
-[S] Skip      — leave this file unchanged
-```
+During sync, you can choose:
+
+* override: replace everything
+* merge: keep your notes and update the rest
+* skip: do nothing
 
 ---
 
-## Security Model
+## security model
 
-Every remote file is scanned **before** being written to disk:
+Every file is scanned before being written:
 
-| Tier | Trigger | Action |
-|------|---------|--------|
-| **BLOCK** | Prompt injection, code execution, credential harvesting, self-modification instructions | Abort — no override possible |
-| **WARN** | AI system references used instructionally, scope creep, suspicious URLs | Pause — show flags + require explicit YES |
-| **Score ≥ 3** | Cumulative soft flags (large file, external links, `.claude/` references) | Treated as WARN |
+| level     | trigger                                          | action               |
+| --------- | ------------------------------------------------ | -------------------- |
+| block     | prompt injection, code execution, secrets access | stop immediately     |
+| warn      | suspicious instructions or links                 | ask for confirmation |
+| score ≥ 3 | multiple minor issues                            | treated as warning   |
 
-Details: [`security.md`](security.md)
+See `security.md` for details.
 
 ---
 
-## File Layout
+## file layout
 
-```
-.claude/skills/skillfetch/     ← install location in your project
-  SKILL.md        → symlink to plugin
-  security.md     → symlink to plugin
-  commands/       → symlink to plugin
-  evals/          → symlink to plugin
-  registry.json   ← project-local (committed)
-  synced/         ← project-local (committed)
-    <repo-alias>/
-      <skill-name>/
+```text
+.claude/skills/skillfetch/
+  registry.json
+  synced/
+    <repo>/
+      <skill>/
         SKILL.md
 ```
 
-Plugin source (single machine-local copy, shared across all your projects):
-```
-~/tools/skillfetch/    ← or wherever you cloned it
-  SKILL.md
-  security.md
+Plugin source:
+
+```text
+~/tools/skillfetch/
   commands/
-    sync.md
-    manage.md
-    directories.md
   evals/
-    README.md
-    scenario-*.md
-  registry.template.json
   install.sh
 ```
 
 ---
 
-## Evals
+## evals
 
-The `evals/` directory contains test scenarios for validating the skill behaviour.
-Run them in a fresh Claude Code session (no prior context) to verify commands work as documented.
+The `evals/` folder contains test scenarios.
+
+Run them in a clean Claude Code session to verify behavior.
 
 ---
 
-## No Sub-Agents
+## no sub-agents
 
-**Every command runs directly in the current conversation.** No Agent tool, no background workers.
+All commands run in the current chat.
 
-This is intentional: commands show interactive menus, wait for user input, and display diffs in real time. Sub-agents run headlessly and can't do any of that. They also burn ~16k tokens per call.
+No background agents are used. This allows interactive menus, diffs, and user input. It also avoids unnecessary token usage.
+
+---
+
+## feedback and contribution </>👨🏻‍💻💻
+
+Feedback is always welcome. If you have ideas, suggestions, or find issues, feel free to open an issue or start a discussion.
+
+Want to contribute? PRs are welcome. Even small improvements make a difference.
+
+---
+
+## about
+
+If you find this project helpful, you can support the work here:  
+☕ https://buymeacoffee.com/alirezaiyan
+
+More about me and my work:  
+🌐 https://alirezaiyan.com
+
+---
