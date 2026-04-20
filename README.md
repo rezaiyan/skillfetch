@@ -30,23 +30,27 @@ This plugin gives you a simple and structured way to manage them:
 
 ## install
 
-### option 1: Claude Code plugin (recommended)
+### Claude Code plugin (recommended)
 
 ```bash
-claude plugin marketplace add rezaiyan/claude-plugins && claude plugin install skillfetch
-````
+# Add the marketplace (once)
+claude plugin marketplace add rezaiyan/claude-plugins
 
-The plugin is ready to use immediately. No restart needed.
+# Install
+claude plugin install skillfetch@rezaiyan
+```
+
+Ready to use immediately. No restart needed.
 
 ---
 
-### option 2: manual install (git clone)
+### manual install (git clone)
 
 ```bash
-# 1. clone the plugin
+# 1. Clone the plugin
 git clone https://github.com/rezaiyan/skillfetch ~/tools/skillfetch
 
-# 2. run the install script from your project
+# 2. Run the install script from your project
 cd /path/to/your/project
 ~/tools/skillfetch/install.sh
 ```
@@ -63,7 +67,7 @@ No need to change CLAUDE.md. Claude Code loads skills automatically.
 
 ### updating
 
-**marketplace:** updates automatically or via settings
+**plugin:** updates automatically via `claude plugin update` or through settings
 
 **manual:**
 
