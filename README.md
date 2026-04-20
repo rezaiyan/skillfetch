@@ -220,7 +220,7 @@ More about me and my work:
 
 ---
 
-## More Claude tools by rezaiyan
+## More Claude tools
 
 | Tool | Description |
 |------|-------------|
