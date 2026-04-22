@@ -222,8 +222,8 @@ More about me and my work:
 
 ## More Claude tools
 
-| Tool | Description |
-|------|-------------|
-| [claude-notifier](https://github.com/rezaiyan/claude-notifier) | Desktop notifications when Claude finishes or needs input (macOS + Linux) |
-| [claude-token-guard](https://github.com/rezaiyan/claude-token-guard) | Cut token burn — blocks expensive agents, rewrites verbose Bash commands |
-| [claude-session-manager](https://github.com/rezaiyan/claude-session-manager) | Desktop app for running multiple Claude Code sessions side by side |
+| Plugin | Description | Install |
+|--------|-------------|---------|
+| [claude-notifier](https://github.com/rezaiyan/claude-notifier) | Desktop notifications when Claude finishes or needs input (macOS + Linux) | `claude plugin install claude-notifier@rezaiyan` |
+| [claude-token-guard](https://github.com/rezaiyan/claude-token-guard) | Cut token burn — blocks expensive agents, rewrites verbose Bash commands | `claude plugin install claude-token-guard@rezaiyan` |
+| [claude-session-manager](https://github.com/rezaiyan/claude-session-manager) | Desktop app for running multiple Claude Code sessions side by side | — |
